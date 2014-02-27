@@ -1,0 +1,8 @@
+
+
+	List of maintainers and how to submit kernel changes
+
+Please try to follow the guidelines below.  This will make things
+easier on the maintainers.  Not all of these guidelines matter for every
+trivial patch so apply some common sense.
+LOGICAL DISK MANAGER SUPPORT (LDM, Windows 2000/XP/Vista Dynamic Disks)
