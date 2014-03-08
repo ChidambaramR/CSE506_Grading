@@ -15,7 +15,11 @@ green='\e[0;32m'
 red='\e[0;31m'
 nc='\e[0m'
 
+echo "DESCRIPTION: Testing for Large files. Press y to continue, n to skip this test case"
+
 read abc
+
+if [ "$abc" = "y" ]; then
 # Test Case 1: Large Files with NUMBER OF BYTES
 echo "************Test Case 2.1: Large Files expecting number of bytes written***********"
 
@@ -27,6 +31,7 @@ echo "Received output: $var"
 
 if [ ${var:-0} -eq $llen ]; then
 	echo "$(tput setaf 2)"
+	echo "***PASSED***"
 	echo "$(tput sgr0)"
 else
 	echo "$(tput setaf 1)"
@@ -61,8 +66,6 @@ echo "************Test Case 2.3: Large Files expecting percentage of bytes writt
 
 var=`./../xhw1 -c -P "$out/out9" $l1 $l2 $l3 $l4 | grep returned | egrep -o [0-9]{3}`
 
-echo -e "\e[1;36mExpected output: Percentage of bytes written = 100\e[0m"
-
 echo "Percentage of bytes written"
 echo "Expected output: 100"
 echo "Received output: $var"
@@ -75,4 +78,8 @@ else
 	echo "$(tput setaf 1)"
 	echo "***FAILED***"
 	echo "$(tput sgr0)"
+fi
+
+else
+	echo "Test case skipped"
 fi
