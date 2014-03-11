@@ -27,176 +27,239 @@ read abc
 if [ "$abc" = "y" ]; then
 
 # Test Case 1.1: Small Files
-echo -e "\e[1;36m************Test Case 1.1: Small Files(Bytes)***********\e[0m"
+echo "************Test Case 1.1: Small Files(Output)***********"
 
-set -x
-$cmd -c -m 777 "$out/out1" $s1 $s2 $s3 $s4
-set +x
+ 
+var=`$cmd -c -m 777 "$out/out1" $s1 $s2 $s3 $s4| grep returned|egrep -o [0-9]{4}`
+ 
 
-echo -e "\e[1;33mExpected Bytes: $slen\e[0m"
+echo "Expected Output: $slen"
+echo "Received Output: $var"
 printf "Checking Output..."
 
 cmp output/out1 input/small-1-2-3-4 
 
-if [ $? -eq 0 ]
-	then
-		echo -e "\e[1;32mPASSED\e[0m"
-	else
-		echo -e "\e[1;31mFAILED\e[0m"
+
+if [ $? -eq 0 ] && [ ${var:-0} -eq $slen ];  then
+	echo "$(tput setaf 2)"
+	echo "***PASSED***"
+	echo "$(tput sgr0)"
+	
+else
+	echo "$(tput setaf 1)"
+	echo "***FAILED***"
+	echo "$(tput sgr0)"
 fi
 
 # Test Case 1.2: Small Files & Empty Files
-echo -e "\e[1;36m************Test Case 1.2: Small Files & Empty Files(Bytes)***********\e[0m"
+echo "************Test Case 1.2: Small Files & Empty Files(Output)***********"
 
-set -x
-$cmd -c -m 777 "$out/out2" $s1 $s2 $empty $s3 $s4
-set +x
-
-echo -e "\e[1;33mExpected Bytes: $slen\e[0m"
+ 
+var=`$cmd -c -m 777 "$out/out2" $s1 $s2 $empty $s3 $s4| grep returned|egrep -o [0-9]{4}`
+ 
+echo "Expected Output: $slen"
+echo "Received Output: $var"
 printf "Checking Output..."
 
 cmp output/out2 input/small-1-2-3-4 
 
-if [ $? -eq 0 ]
-	then
-		echo -e "\e[1;32mPASSED\e[0m"
-	else
-		echo -e "\e[1;31mFAILED\e[0m"
+
+if [ $? -eq 0 ] && [ ${var:-0} -eq $slen ];  then
+	echo "$(tput setaf 2)"
+	echo "***PASSED***"
+	echo "$(tput sgr0)"
+	
+else
+	echo "$(tput setaf 1)"
+	echo "***FAILED***"
+	echo "$(tput sgr0)"
 fi
 
 # Test Case 1.3: Empty Files
-echo -e "\e[1;36m************Test Case 1.3: Empty Files(Bytes)***********\e[0m"
+echo "************Test Case 1.3: Empty Files(Output)***********"
 
-set -x
-$cmd -c -m 777 "$out/out3" $empty $empty $empty $empty $empty
-set +x
+ 
+var=`$cmd -c -m 777 "$out/out3" $empty $empty $empty $empty $empty | grep returned | egrep -o [0-9]{1}`
+ 
 
-echo -e "\e[1;33mExpected Bytes: 0\e[0m"
+echo "Expected Output: 0"
+echo "Received Output: $var"
 printf "Checking Output..."
 
 result=$(stat -c %s output/out3)
 
-if [ $result == 0 ]
+if [ ${result:-0} -eq 0 ] && [ ${var:-0} -eq 0 ];
 	then
-		echo -e "\e[1;32mPASSED\e[0m"
+		echo "$(tput setaf 2)"
+		echo "***PASSED***"
+		echo "$(tput sgr0)"
 	else
-		echo -e "\e[1;31mFAILED\e[0m"
+		echo "$(tput setaf 1)"
+		echo "***FAILED***"
+		echo "$(tput sgr0)"
 fi
 
 
 # Test Case 1.4: Small Files
-echo -e "\e[1;36m************Test Case 1.4: Small Files(Files)***********\e[0m"
+echo "************Test Case 1.4: Small Files(Files)***********"
 
-set -x
-$cmd -c -m 777 -N "$out/out6" $s1 $s2 $s3 $s4
-set +x
+ 
+var=`$cmd -c -m 777 -N "$out/out4" $s1 $s2 $s3 $s4 | grep returned | egrep -o [0-9]{1}`
+ 
 
-echo -e "\e[1;33mExpected Files: 4\e[0m"
+echo "Expected Output: 4"
+echo "Received Output: $var"
 printf "Checking Output..."
 
-cmp output/out6 input/small-1-2-3-4 
+cmp output/out4 input/small-1-2-3-4 
 
-if [ $? -eq 0 ]
-	then
-		echo -e "\e[1;32mPASSED\e[0m"
-	else
-		echo -e "\e[1;31mFAILED\e[0m"
+
+if [ $? -eq 0 ] && [ ${var:-0} -eq 4 ];  then
+	echo "$(tput setaf 2)"
+	echo "***PASSED***"
+	echo "$(tput sgr0)"
+	
+else
+	echo "$(tput setaf 1)"
+	echo "***FAILED***"
+	echo "$(tput sgr0)"
 fi
 
-# Test Case 1.5: Small Files & Empty Files
-echo -e "\e[1;36m************Test Case 1.5: Small Files & Empty Files(Files)***********\e[0m"
 
-set -x
-$cmd -c -m 777 -N "$out/out7" $s1 $s2 $empty $s3 $s4
-set +x
 
-echo -e "\e[1;33mExpected Files: 5\e[0m"
+
+# Test Case 1.5: Small Files
+echo "************Test Case 1.5: Small & Empty Files(Files)***********"
+
+ 
+var=`$cmd -c -m 777 -N "$out/out5" $s1 $s2 $s3 $empty $s4 | grep returned | egrep -o [0-9]{1}`
+ 
+
+echo "Expected Output: 5"
+echo "Received Output: $var"
 printf "Checking Output..."
 
-cmp output/out7 input/small-1-2-3-4 
+cmp output/out5 input/small-1-2-3-4 
 
-if [ $? -eq 0 ]
-	then
-		echo -e "\e[1;32mPASSED\e[0m"
-	else
-		echo -e "\e[1;31mFAILED\e[0m"
+
+if [ $? -eq 0 ] && [ ${var:-0} -eq 5 ];  then
+	echo "$(tput setaf 2)"
+	echo "***PASSED***"
+	echo "$(tput sgr0)"
+	
+else
+	echo "$(tput setaf 1)"
+	echo "***FAILED***"
+	echo "$(tput sgr0)"
 fi
+
+
+
 
 # Test Case 1.6: Empty Files
-echo -e "\e[1;36m************Test Case 1.6: Empty Files(Files)***********\e[0m"
+echo "************Test Case 1.6: Empty Files(Files)***********"
 
-set -x
-$cmd -c -m 777 -N "$out/out8" $empty $empty $empty $empty $empty
-set +x
+ 
+var=`$cmd -c -m 777 -N "$out/out6" $empty $empty $empty $empty $empty | grep returned | egrep -o [0-9]{1}`
+ 
 
-echo -e "\e[1;33mExpected Files: 5\e[0m"
+echo "Expected Output: 5"
+echo "Received Output: $var"
 printf "Checking Output..."
 
-result=$(stat -c %s output/out8)
 
-if [ $result == 0 ]
+result=$(stat -c %s output/out6)
+
+if [ ${result:-0} -eq 0 ] && [ ${var:-0} -eq 5 ];
 	then
-		echo -e "\e[1;32mPASSED\e[0m"
+		echo "$(tput setaf 2)"
+		echo "***PASSED***"
+		echo "$(tput sgr0)"
 	else
-		echo -e "\e[1;31mFAILED\e[0m"
+		echo "$(tput setaf 1)"
+		echo "***FAILED***"
+		echo "$(tput sgr0)"
 fi
 
 
 # Test Case 1.7: Small Files
-echo -e "\e[1;36m************Test Case 1.7: Small Files(Percentage)***********\e[0m"
+echo "************Test Case 1.7: Small FIles(Percentage)***********"
 
-set -x
-$cmd -c -m 777 -P "$out/out11" $s1 $s2 $s3 $s4
-set +x
+ 
+var=`$cmd -c -m 777 -P "$out/out7" $s1 $s2 $s3 $s4 | grep returned | egrep -o [0-9]{3}`
+ 
 
-echo -e "\e[1;33mExpected Percentage\e[0m"
+echo "Expected Output: 100"
+echo "Received Output: $var"
 printf "Checking Output..."
 
-cmp output/out11 input/small-1-2-3-4 
+cmp output/out7 input/small-1-2-3-4 
 
-if [ $? -eq 0 ]
-	then
-		echo -e "\e[1;32mPASSED\e[0m"
-	else
-		echo -e "\e[1;31mFAILED\e[0m"
+
+if [ $? -eq 0 ] && [ ${var:-0} -eq 100 ];  then
+	echo "$(tput setaf 2)"
+	echo "***PASSED***"
+	echo "$(tput sgr0)"
+	
+else
+	echo "$(tput setaf 1)"
+	echo "***FAILED***"
+	echo "$(tput sgr0)"
 fi
 
-# Test Case 1.8: Small Files & Empty Files
-echo -e "\e[1;36m************Test Case 1.8: Small Files & Empty Files*(Percentage)**********\e[0m"
 
-set -x
-$cmd -c -m 777 -P "$out/out12" $s1 $s2 $empty $s3 $s4
-set +x
 
-echo -e "\e[1;33mExpected Percentage\e[0m"
+
+# Test Case 1.8: Small & Empty Files Percentage
+echo "************Test Case 1.8: Small & Empty Files(Files)***********"
+
+ 
+var=`$cmd -c -m 777 -P "$out/out8" $s1 $s2 $s3 $empty $s4 | grep returned | egrep -o [0-9]{3}`
+ 
+
+echo "Expected Output: 100"
+echo "Received Output: $var"
 printf "Checking Output..."
 
-cmp output/out12 input/small-1-2-3-4 
+cmp output/out8 input/small-1-2-3-4 
 
-if [ $? -eq 0 ]
-	then
-		echo -e "\e[1;32mPASSED\e[0m"
-	else
-		echo -e "\e[1;31mFAILED\e[0m"
+
+if [ $? -eq 0 ] && [ ${var:-0} -eq 100 ];  then
+	echo "$(tput setaf 2)"
+	echo "***PASSED***"
+	echo "$(tput sgr0)"
+	
+else
+	echo "$(tput setaf 1)"
+	echo "***FAILED***"
+	echo "$(tput sgr0)"
 fi
+
+
 
 # Test Case 1.9: Empty Files
-echo -e "\e[1;36m************Test Case 1.9: Empty Files*(Percentage)**********\e[0m"
+echo "************Test Case 1.9: Empty Files(Percentage)**********"
 
-set -x
-$cmd -c -m 777 -P "$out/out13" $empty $empty $empty $empty $empty
-set +x
+ 
+var=`$cmd -c -m 777 -P "$out/out9" $empty $empty $empty $empty $empty | grep returned | egrep -o [0-9]{3}`
+ 
 
-echo -e "\e[1;33mExpected Percentage\e[0m"
+echo "Expected Output: 100"
+echo "Received Output: $var"
 printf "Checking Output..."
 
-result=$(stat -c %s output/out13)
+result=$(stat -c %s output/out9)
 
-if [ $result == 0 ]
+
+if [ ${result:-0} -eq 0 ] && [ ${var:-0} -eq 100 ];
 	then
-		echo -e "\e[1;32mPASSED\e[0m"
+		echo "$(tput setaf 2)"
+		echo "***PASSED***"
+		echo "$(tput sgr0)"
 	else
-		echo -e "\e[1;31mFAILED\e[0m"
+		echo "$(tput setaf 1)"
+		echo "***FAILED***"
+		echo "$(tput sgr0)"
 fi
 
 fi
