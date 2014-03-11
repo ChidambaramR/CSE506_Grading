@@ -1,5 +1,18 @@
 #!/bin/sh
 
+
+###
+
+# TEST CASE: Checks for proper operation with input files being small or empty.
+#	The script assumes files small-1, small-2, small-3, small-4, small-1-2-3-4, 
+#	already created in the backend. It supplies as inputs the small-1, small-2, small-3, small-4,
+#	across various test cases. It checks for correctness with the output file created by the user which is in the 
+#	output directory, with the file small-1-2-3-4 across several 
+#	test cases. If equal the test case is assumed to passed , else fail.
+
+###
+
+
 cmd='./../xhw1'
 
 s1='script/input/small-1'
@@ -10,14 +23,7 @@ s1234='script/input/small-1-2-3-4'
 
 empty='script/input/empty'
 
-l1='script/input/large-1'
-l2='script/input/large-2'
-l3='script/input/large-3'
-l4='script/input/large-4'
-l1234='script/input/large-1-2-3-4'
-
 slen=$(stat -c %s input/small-1-2-3-4)
-llen=$(stat -c %s input/large-1-2-3-4)
 
 out='script/output'
 
