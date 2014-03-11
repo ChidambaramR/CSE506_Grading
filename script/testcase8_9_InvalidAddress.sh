@@ -3,10 +3,10 @@
 
 ####
 
-# TEST CASE: INPUT FILE DOES NOT EXISTS
-# All the input files specifies does not exist. The script greps the output for common error displays and 
-#	asks permission from the grader whether the user has displayed appropriate error messages and aborted
-#	the executiong of the system call. 
+# TEST CASE: INVALID ADDRESS SPACE
+# The student must check for invalid address space being passed to the system call. Following are the functions which does the job
+#	copy_from_user, access_ok, verify_area, getname
+#	So the script greps for the users source file to check if they have used some of these functions
 
 ####
 
@@ -17,11 +17,11 @@ read abc
 if [ "$abc" = "y" ]; then
 echo "************Test Case 8_9: Checking if user is handling correctly when invalid address is used***********"
 
-var=`grep "copy_from_user\|access_ok\|getname" ./../sys_xconcat.c`
+var=`grep "copy_from_user\|access_ok\|getname\|verify_area" ./../sys_xconcat.c`
 
 
 
-echo "Expected Output: Usage of copy_from_user / access_ok / getname or something similar"
+echo "Expected Output: Usage of copy_from_user / access_ok / getname / verify_area or something similar"
 echo "Received Output: $var"
 printf "Checking Output..."
 
