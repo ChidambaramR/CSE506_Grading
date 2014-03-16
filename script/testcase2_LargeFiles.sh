@@ -13,17 +13,17 @@
 
 cmd='./../xhw1'
 
-empty='script/input/empty'
+empty='input/empty'
 
-l1='script/input/large-1'
-l2='script/input/large-2'
-l3='script/input/large-3'
-l4='script/input/large-4'
-l1234='script/input/large-1-2-3-4'
+l1='input/large-1'
+l2='input/large-2'
+l3='input/large-3'
+l4='input/large-4'
+l1234='input/large-1-2-3-4'
 
 llen=$(stat -c %s input/large-1-2-3-4)
 
-out='script/output'
+out='output'
 
 echo "DESCRIPTION: Testing for Large files. Press y to continue, n to skip this test case"
 read abc
@@ -33,7 +33,7 @@ if [ "$abc" = "y" ]; then
 echo "************Test Case 2.1: Large Files(Bytes)***********"
 
 
-var=`$cmd -c -m 777 "$out/out10" $l1 $l2 $l3 $l4 | grep returned | egrep -o [0-9]{6}`
+var=`$cmd -c -m 777 "$out/out10" $l1 $l2 $l3 $l4 |  egrep -o [0-9]{6}`
 
 echo "Expected Output: $llen"
 echo "Received Output: $var"
@@ -58,7 +58,7 @@ fi
 echo "************Test Case 2.2: Large Files & Empty Files(Bytes)***********"
 
 
-var=`$cmd -c -m 777 "$out/out11" $l1 $l2 $empty $l3 $l4 | grep returned | egrep -o [0-9]{6}`
+var=`$cmd -c -m 777 "$out/out11" $l1 $l2 $empty $l3 $l4 |  egrep -o [0-9]{6}`
 
 
 
@@ -85,7 +85,7 @@ fi
 echo "************Test Case 2.3: Large Files(Files)***********"
 
 
-var=`$cmd -c -m 777 -N "$out/out12" $l1 $l2 $l3 $l4 | grep returned | egrep -o [0-9]{1}`
+var=`$cmd -c -m 777 -N "$out/out12" $l1 $l2 $l3 $l4 |  egrep -o [0-9]{1}`
 
 
 echo "Expected Output: 4"
@@ -110,7 +110,7 @@ fi
 echo "************Test Case 2.4: Large Files & Empty Files(Files)***********"
 
 
-var=`$cmd -c -m 777 -N "$out/out13" $l1 $l2 $empty $l3 $l4 | grep returned | egrep -o [0-9]{1}`
+var=`$cmd -c -m 777 -N "$out/out13" $l1 $l2 $empty $l3 $l4 |  egrep -o [0-9]{1}`
 
 
 echo "Expected Output: 5"
@@ -136,7 +136,7 @@ fi
 echo "************Test Case 2.5: Large Files(Percentage)***********"
 
 
-var=`$cmd -c -m 777 -P "$out/out14" $l1 $l2 $l3 $l4 | grep returned | egrep -o [0-9]{3}`
+var=`$cmd -c -m 777 -P "$out/out14" $l1 $l2 $l3 $l4 |  egrep -o [0-9]{3}`
 
 
 echo "Expected Output: 100"
@@ -162,7 +162,7 @@ fi
 echo "************Test Case 2.6: Large Files & Empty Files(Percentage)***********"
 
 
-var=`$cmd -c -m 777 -P "$out/out15" $l1 $l2 $empty $l3 $l4 | grep returned | egrep -o [0-9]{3}`
+var=`$cmd -c -m 777 -P "$out/out15" $l1 $l2 $empty $l3 $l4 |  egrep -o [0-9]{3}`
 
 
 echo "Expected Output: 100"

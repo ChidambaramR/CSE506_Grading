@@ -15,17 +15,16 @@
 
 cmd='./../xhw1'
 
-s1='script/input/small-1'
-s2='script/input/small-2'
-s3='script/input/small-3'
-s4='script/input/small-4'
-s1234='script/input/small-1-2-3-4'
+s1='input/small-1'
+s2='input/small-2'
+s3='input/small-3'
+s4='input/small-4'
+s1234='input/small-1-2-3-4'
 
-empty='script/input/empty'
+empty='input/empty'
 
 slen=$(stat -c %s input/small-1-2-3-4)
 
-out='script/output'
 
 
 echo "DESCRIPTION: Testing for Small or Empty files. Press y to continue, n to skip this test case"
@@ -36,7 +35,7 @@ if [ "$abc" = "y" ]; then
 echo "************Test Case 1.1: Small Files(Output)***********"
 
  
-var=`$cmd -c -m 777 "$out/out1" $s1 $s2 $s3 $s4| grep returned|egrep -o [0-9]{4}`
+var=`$cmd -c -m 777 "output/out1" $s1 $s2 $s3 $s4| egrep -o [0-9]{4}`
  
 
 echo "Expected Output: $slen"
@@ -61,7 +60,7 @@ fi
 echo "************Test Case 1.2: Small Files & Empty Files(Output)***********"
 
  
-var=`$cmd -c -m 777 "$out/out2" $s1 $s2 $empty $s3 $s4| grep returned|egrep -o [0-9]{4}`
+var=`$cmd -c -m 777 "output/out2" $s1 $s2 $empty $s3 $s4| egrep -o [0-9]{4}`
  
 echo "Expected Output: $slen"
 echo "Received Output: $var"
@@ -85,7 +84,7 @@ fi
 echo "************Test Case 1.3: Empty Files(Output)***********"
 
  
-var=`$cmd -c -m 777 "$out/out3" $empty $empty $empty $empty $empty | grep returned | egrep -o [0-9]{1}`
+var=`$cmd -c -m 777 "output/out3" $empty $empty $empty $empty $empty |  egrep -o [0-9]{1}`
  
 
 echo "Expected Output: 0"
@@ -110,7 +109,7 @@ fi
 echo "************Test Case 1.4: Small Files(Files)***********"
 
  
-var=`$cmd -c -m 777 -N "$out/out4" $s1 $s2 $s3 $s4 | grep returned | egrep -o [0-9]{1}`
+var=`$cmd -c -m 777 -N "output/out4" $s1 $s2 $s3 $s4 |  egrep -o [0-9]{1}`
  
 
 echo "Expected Output: 4"
@@ -138,7 +137,7 @@ fi
 echo "************Test Case 1.5: Small & Empty Files(Files)***********"
 
  
-var=`$cmd -c -m 777 -N "$out/out5" $s1 $s2 $s3 $empty $s4 | grep returned | egrep -o [0-9]{1}`
+var=`$cmd -c -m 777 -N "output/out5" $s1 $s2 $s3 $empty $s4 |  egrep -o [0-9]{1}`
  
 
 echo "Expected Output: 5"
@@ -166,7 +165,7 @@ fi
 echo "************Test Case 1.6: Empty Files(Files)***********"
 
  
-var=`$cmd -c -m 777 -N "$out/out6" $empty $empty $empty $empty $empty | grep returned | egrep -o [0-9]{1}`
+var=`$cmd -c -m 777 -N "output/out6" $empty $empty $empty $empty $empty |  egrep -o [0-9]{1}`
  
 
 echo "Expected Output: 5"
@@ -192,7 +191,7 @@ fi
 echo "************Test Case 1.7: Small FIles(Percentage)***********"
 
  
-var=`$cmd -c -m 777 -P "$out/out7" $s1 $s2 $s3 $s4 | grep returned | egrep -o [0-9]{3}`
+var=`$cmd -c -m 777 -P "output/out7" $s1 $s2 $s3 $s4 |  egrep -o [0-9]{3}`
  
 
 echo "Expected Output: 100"
@@ -220,7 +219,7 @@ fi
 echo "************Test Case 1.8: Small & Empty Files(Files)***********"
 
  
-var=`$cmd -c -m 777 -P "$out/out8" $s1 $s2 $s3 $empty $s4 | grep returned | egrep -o [0-9]{3}`
+var=`$cmd -c -m 777 -P "output/out8" $s1 $s2 $s3 $empty $s4 |  egrep -o [0-9]{3}`
  
 
 echo "Expected Output: 100"
@@ -247,7 +246,7 @@ fi
 echo "************Test Case 1.9: Empty Files(Percentage)**********"
 
  
-var=`$cmd -c -m 777 -P "$out/out9" $empty $empty $empty $empty $empty | grep returned | egrep -o [0-9]{3}`
+var=`$cmd -c -m 777 -P "output/out9" $empty $empty $empty $empty $empty |  egrep -o [0-9]{3}`
  
 
 echo "Expected Output: 100"
