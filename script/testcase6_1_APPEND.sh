@@ -10,24 +10,24 @@
 
 cmd='./../xhw1'
 
-s1='script/input/small-1'
-s2='script/input/small-2'
-s3='script/input/small-3'
-s4='script/input/small-4'
-s1234='script/input/dup-small-1-2-3-4'
+s1='input/small-1'
+s2='input/small-2'
+s3='input/small-3'
+s4='input/small-4'
+s1234='input/small-1-2-3-4'
 
-empty='script/input/empty'
+empty='input/empty'
 
-slen=$(stat -c %s input/dup-small-1-2-3-4)
+slen=$(stat -c %s input/small-1-2-3-4)
 
-l1='script/input/large-1'
-l2='script/input/large-2'
-l3='script/input/large-3'
-l4='script/input/large-4'
-l1234='script/input/large-1-2-3-4'
+l1='input/large-1'
+l2='input/large-2'
+l3='input/large-3'
+l4='input/large-4'
+l1234='input/large-1-2-3-4'
 
 llen=$(stat -c %s input/large-1-2-3-4)
-out='script/output'
+out='output'
 
 echo "DESCRIPTION: Testing for Small or Empty files. Press y to continue, n to skip this test case"
 read abc
@@ -37,7 +37,7 @@ if [ "$abc" = "y" ]; then
 echo "************Test Case 6.1.1: Small Files(Output)***********"
 
  
-var=`$cmd -a -m 777 "$out/out1" $s1 $s2 $s3 $s4| grep returned|egrep -o [0-9]{4}`
+var=`$cmd -a -m 777 "$out/out1" $s1 $s2 $s3 $s4| egrep -o [0-9]{4}`
  
 
 echo "Expected Output: $slen"
@@ -62,7 +62,7 @@ fi
 echo "************Test Case 6.1.2: Small Files & Empty Files(Output)***********"
 
  
-var=`$cmd -a -m 777 "$out/out2" $s1 $s2 $empty $s3 $s4| grep returned|egrep -o [0-9]{4}`
+var=`$cmd -a -m 777 "$out/out2" $s1 $s2 $empty $s3 $s4| egrep -o [0-9]{4}`
  
 echo "Expected Output: $slen"
 echo "Received Output: $var"
@@ -86,7 +86,7 @@ fi
 echo "************Test Case 6.1.3: Empty Files(Output)***********"
 
  
-var=`$cmd -a -m 777 "$out/out3" $empty $empty $empty $empty $empty | grep returned | egrep -o [0-9]{1}`
+var=`$cmd -a -m 777 "$out/out3" $empty $empty $empty $empty $empty |  egrep -o [0-9]{1}`
  
 
 echo "Expected Output: 0"
@@ -111,7 +111,7 @@ fi
 echo "************Test Case 6.1.4: Small Files(Files)***********"
 
  
-var=`$cmd -a -m 777 -N "$out/out4" $s1 $s2 $s3 $s4 | grep returned | egrep -o [0-9]{1}`
+var=`$cmd -a -m 777 -N "$out/out4" $s1 $s2 $s3 $s4 |  egrep -o [0-9]{1}`
  
 
 echo "Expected Output: 4"
@@ -139,7 +139,7 @@ fi
 echo "************Test Case 6.1.5: Small & Empty Files(Files)***********"
 
  
-var=`$cmd -a -m 777 -N "$out/out5" $s1 $s2 $s3 $empty $s4 | grep returned | egrep -o [0-9]{1}`
+var=`$cmd -a -m 777 -N "$out/out5" $s1 $s2 $s3 $empty $s4 |  egrep -o [0-9]{1}`
  
 
 echo "Expected Output: 5"
@@ -167,7 +167,7 @@ fi
 echo "************Test Case 6.1.6: Empty Files(Files)***********"
 
  
-var=`$cmd -a -m 777 -N "$out/out6" $empty $empty $empty $empty $empty | grep returned | egrep -o [0-9]{1}`
+var=`$cmd -a -m 777 -N "$out/out6" $empty $empty $empty $empty $empty |  egrep -o [0-9]{1}`
  
 
 echo "Expected Output: 5"
@@ -193,7 +193,7 @@ fi
 echo "************Test Case 6.1.7: Small FIles(Percentage)***********"
 
  
-var=`$cmd -a -m 777 -P "$out/out7" $s1 $s2 $s3 $s4 | grep returned | egrep -o [0-9]{3}`
+var=`$cmd -a -m 777 -P "$out/out7" $s1 $s2 $s3 $s4 |  egrep -o [0-9]{3}`
  
 
 echo "Expected Output: 100"
@@ -221,7 +221,7 @@ fi
 echo "************Test Case 6.1.8: Small & Empty Files(Files)***********"
 
  
-var=`$cmd -a -m 777 -P "$out/out8" $s1 $s2 $s3 $empty $s4 | grep returned | egrep -o [0-9]{3}`
+var=`$cmd -a -m 777 -P "$out/out8" $s1 $s2 $s3 $empty $s4 |  egrep -o [0-9]{3}`
  
 
 echo "Expected Output: 100"
@@ -248,7 +248,7 @@ fi
 echo "************Test Case 6.1.9: Empty Files(Percentage)**********"
 
  
-var=`$cmd -a -m 777 -P "$out/out9" $empty $empty $empty $empty $empty | grep returned | egrep -o [0-9]{3}`
+var=`$cmd -a -m 777 -P "$out/out9" $empty $empty $empty $empty $empty |  egrep -o [0-9]{3}`
  
 
 echo "Expected Output: 100"
@@ -274,13 +274,13 @@ fi
 echo "************Test Case 6.1.10: Large Files(Bytes)***********"
 
 
-var=`$cmd -a -m 777 "$out/out10" $l1 $l2 $l3 $l4 | grep returned | egrep -o [0-9]{6}`
+var=`$cmd -a -m 777 "$out/out10" $l1 $l2 $l3 $l4 |  egrep -o [0-9]{6}`
 
 echo "Expected Output: $llen"
 echo "Received Output: $var"
 printf "Checking Output..."
 
-cmp output/out10 input/large-1-2-3-4 
+cmp output/out10 input/dup-large-1-2-3-4 
 
 
 if [ $? -eq 0 ] && [ ${var:-0} -eq $llen ];  then
@@ -299,7 +299,7 @@ fi
 echo "************Test Case 6.1.11: Large Files & Empty Files(Bytes)***********"
 
 
-var=`$cmd -a -m 777 "$out/out11" $l1 $l2 $empty $l3 $l4 | grep returned | egrep -o [0-9]{6}`
+var=`$cmd -a -m 777 "$out/out11" $l1 $l2 $empty $l3 $l4 |  egrep -o [0-9]{6}`
 
 
 
@@ -307,7 +307,7 @@ echo "Expected Output: $llen"
 echo "Received Output: $var"
 printf "Checking Output..."
 
-cmp output/out11 input/large-1-2-3-4 
+cmp output/out11 input/dup-large-1-2-3-4 
 
 
 if [ $? -eq 0 ] && [ ${var:-0} -eq $llen ];  then
@@ -326,14 +326,14 @@ fi
 echo "************Test Case 6.1.12: Large Files(Files)***********"
 
 
-var=`$cmd -a -m 777 -N "$out/out12" $l1 $l2 $l3 $l4 | grep returned | egrep -o [0-9]{1}`
+var=`$cmd -a -m 777 -N "$out/out12" $l1 $l2 $l3 $l4 |  egrep -o [0-9]{1}`
 
 
 echo "Expected Output: 4"
 echo "Received Output: $var"
 printf "Checking Output..."
 
-cmp output/out12 input/large-1-2-3-4 
+cmp output/out12 input/dup-large-1-2-3-4 
 
 
 if [ $? -eq 0 ] && [ ${var:-0} -eq 4 ];  then
@@ -351,14 +351,14 @@ fi
 echo "************Test Case 6.1.13: Large Files & Empty Files(Files)***********"
 
 
-var=`$cmd -a -m 777 -N "$out/out13" $l1 $l2 $empty $l3 $l4 | grep returned | egrep -o [0-9]{1}`
+var=`$cmd -a -m 777 -N "$out/out13" $l1 $l2 $empty $l3 $l4 |  egrep -o [0-9]{1}`
 
 
 echo "Expected Output: 5"
 echo "Received Output: $var"
 printf "Checking Output..."
 
-cmp output/out13 input/large-1-2-3-4 
+cmp output/out13 input/dup-large-1-2-3-4 
 
 
 if [ $? -eq 0 ] && [ ${var:-0} -eq 5 ];  then
@@ -377,14 +377,14 @@ fi
 echo "************Test Case 6.1.14: Large Files(Percentage)***********"
 
 
-var=`$cmd -a -m 777 -P "$out/out14" $l1 $l2 $l3 $l4 | grep returned | egrep -o [0-9]{3}`
+var=`$cmd -a -m 777 -P "$out/out14" $l1 $l2 $l3 $l4 |  egrep -o [0-9]{3}`
 
 
 echo "Expected Output: 100"
 echo "Received Output: $var"
 printf "Checking Output..."
 
-cmp output/out14 input/large-1-2-3-4 
+cmp output/out14 input/dup-large-1-2-3-4 
 
 
 if [ $? -eq 0 ] && [ ${var:-0} -eq 100 ];  then
@@ -403,14 +403,14 @@ fi
 echo "************Test Case 6.1.15: Large Files & Empty Files(Percentage)***********"
 
 
-var=`$cmd -a -m 777 -P "$out/out15" $l1 $l2 $empty $l3 $l4 | grep returned | egrep -o [0-9]{3}`
+var=`$cmd -a -m 777 -P "$out/out15" $l1 $l2 $empty $l3 $l4 |  egrep -o [0-9]{3}`
 
 
 echo "Expected Output: 100"
 echo "Received Output: $var"
 printf "Checking Output..."
 
-cmp output/out15 input/large-1-2-3-4 
+cmp output/out15 input/dup-large-1-2-3-4 
 
 
 if [ $? -eq 0 ] && [ ${var:-0} -eq 100 ];  then

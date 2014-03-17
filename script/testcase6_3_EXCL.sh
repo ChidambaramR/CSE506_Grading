@@ -37,7 +37,7 @@ if [ "$abc" = "y" ]; then
 echo "************Test Case 6.3.1: Small Files(Output)***********"
 
  
-var=`$cmd -c -m 777 "$out/out6.3.1" $s1 $s2 $s3 $s4| egrep -o [0-9]{4}`
+var=`$cmd -e -c -m 777 "$out/out6.3.1" $s1 $s2 $s3 $s4| egrep -o [0-9]{4}`
  
 
 echo "Expected Output: $slen"
@@ -62,7 +62,7 @@ fi
 echo "************Test Case 6.3.2: Small Files & Empty Files(Output)***********"
 
  
-var=`$cmd -c -m 777 "$out/out6.3.2" $s1 $s2 $empty $s3 $s4| egrep -o [0-9]{4}`
+var=`$cmd -e -c -m 777 "$out/out6.3.2" $s1 $s2 $empty $s3 $s4| egrep -o [0-9]{4}`
  
 echo "Expected Output: $slen"
 echo "Received Output: $var"
@@ -86,7 +86,7 @@ fi
 echo "************Test Case 6.3.3: Empty Files(Output)***********"
 
  
-var=`$cmd -c -m 777 "$out/out6.3.3" $empty $empty $empty $empty $empty |  egrep -o [0-9]{1}`
+var=`$cmd -e -c -m 777 "$out/out6.3.3" $empty $empty $empty $empty $empty |  egrep -o [0-9]{1}`
  
 
 echo "Expected Output: 0"
@@ -111,7 +111,7 @@ fi
 echo "************Test Case 6.3.4: Small Files(Files)***********"
 
  
-var=`$cmd -c -m 777 -N "$out/out6.3.4" $s1 $s2 $s3 $s4 |  egrep -o [0-9]{1}`
+var=`$cmd -e -c -m 777 -N "$out/out6.3.4" $s1 $s2 $s3 $s4 |  egrep -o [0-9]{1}`
  
 
 echo "Expected Output: 4"
@@ -139,7 +139,7 @@ fi
 echo "************Test Case 6.3.5: Small & Empty Files(Files)***********"
 
  
-var=`$cmd -c -m 777 -N "$out/out6.3.5" $s1 $s2 $s3 $empty $s4 |  egrep -o [0-9]{1}`
+var=`$cmd -e -c -m 777 -N "$out/out6.3.5" $s1 $s2 $s3 $empty $s4 |  egrep -o [0-9]{1}`
  
 
 echo "Expected Output: 5"
@@ -167,7 +167,7 @@ fi
 echo "************Test Case 6.3.6: Empty Files(Files)***********"
 
  
-var=`$cmd -c -m 777 -N "$out/out6.3.6" $empty $empty $empty $empty $empty |  egrep -o [0-9]{1}`
+var=`$cmd -e -c -m 777 -N "$out/out6.3.6" $empty $empty $empty $empty $empty |  egrep -o [0-9]{1}`
  
 
 echo "Expected Output: 5"
@@ -193,7 +193,7 @@ fi
 echo "************Test Case 6.3.7: Small FIles(Percentage)***********"
 
  
-var=`$cmd -c -m 777 -P "$out/out6.3.7" $s1 $s2 $s3 $s4 |  egrep -o [0-9]{3}`
+var=`$cmd -e -c -m 777 -P "$out/out6.3.7" $s1 $s2 $s3 $s4 |  egrep -o [0-9]{3}`
  
 
 echo "Expected Output: 100"
@@ -221,7 +221,7 @@ fi
 echo "************Test Case 6.3.8: Small & Empty Files(Files)***********"
 
  
-var=`$cmd -c -m 777 -P "$out/out6.3.8" $s1 $s2 $s3 $empty $s4 |  egrep -o [0-9]{3}`
+var=`$cmd -e -c -m 777 -P "$out/out6.3.8" $s1 $s2 $s3 $empty $s4 |  egrep -o [0-9]{3}`
  
 
 echo "Expected Output: 100"
@@ -248,7 +248,7 @@ fi
 echo "************Test Case 6.3.9: Empty Files(Percentage)**********"
 
  
-var=`$cmd -c -m 777 -P "$out/out6.3.9" $empty $empty $empty $empty $empty |  egrep -o [0-9]{3}`
+var=`$cmd -e -c -m 777 -P "$out/out6.3.9" $empty $empty $empty $empty $empty |  egrep -o [0-9]{3}`
  
 
 echo "Expected Output: 100"
@@ -274,7 +274,7 @@ fi
 echo "************Test Case 6.3.10: Large Files(Bytes)***********"
 
 
-var=`$cmd -c -m 777 "$out/out6.3.10" $l1 $l2 $l3 $l4 |  egrep -o [0-9]{6}`
+var=`$cmd -e -c -m 777 "$out/out6.3.10" $l1 $l2 $l3 $l4 |  egrep -o [0-9]{6}`
 
 echo "Expected Output: $llen"
 echo "Received Output: $var"
@@ -299,7 +299,7 @@ fi
 echo "************Test Case 6.3.11: Large Files & Empty Files(Bytes)***********"
 
 
-var=`$cmd -c -m 777 "$out/out6.3.11" $l1 $l2 $empty $l3 $l4 |  egrep -o [0-9]{6}`
+var=`$cmd -e -c -m 777 "$out/out6.3.11" $l1 $l2 $empty $l3 $l4 |  egrep -o [0-9]{6}`
 
 
 
@@ -326,7 +326,7 @@ fi
 echo "************Test Case 6.3.12: Large Files(Files)***********"
 
 
-var=`$cmd -c -m 777 -N "$out/out6.3.12" $l1 $l2 $l3 $l4 |  egrep -o [0-9]{1}`
+var=`$cmd -e -c -m 777 -N "$out/out6.3.12" $l1 $l2 $l3 $l4 |  egrep -o [0-9]{1}`
 
 
 echo "Expected Output: 4"
@@ -351,7 +351,7 @@ fi
 echo "************Test Case 6.3.13: Large Files & Empty Files(Files)***********"
 
 
-var=`$cmd -c -m 777 -N "$out/out6.3.13" $l1 $l2 $empty $l3 $l4 |  egrep -o [0-9]{1}`
+var=`$cmd -e -c -m 777 -N "$out/out6.3.13" $l1 $l2 $empty $l3 $l4 |  egrep -o [0-9]{1}`
 
 
 echo "Expected Output: 5"
@@ -377,7 +377,7 @@ fi
 echo "************Test Case 6.3.14: Large Files(Percentage)***********"
 
 
-var=`$cmd -c -m 777 -P "$out/out6.3.14" $l1 $l2 $l3 $l4 |  egrep -o [0-9]{3}`
+var=`$cmd -e -c -m 777 -P "$out/out6.3.14" $l1 $l2 $l3 $l4 |  egrep -o [0-9]{3}`
 
 
 echo "Expected Output: 100"
@@ -403,7 +403,7 @@ fi
 echo "************Test Case 6.3.15: Large Files & Empty Files(Percentage)***********"
 
 
-var=`$cmd -c -m 777 -P "$out/out6.3.15" $l1 $l2 $empty $l3 $l4 |  egrep -o [0-9]{3}`
+var=`$cmd -e -c -m 777 -P "$out/out6.3.15" $l1 $l2 $empty $l3 $l4 |  egrep -o [0-9]{3}`
 
 
 echo "Expected Output: 100"
