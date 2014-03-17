@@ -21,13 +21,34 @@ read abc
 
 if [ "$abc" = "y" ]; then
 
+echo "************Test Case 10.1: Checking for appropriate error message for same input and output file***********"
 
-echo "************Test Case 13.1: Giving permission in an unusual way.***********"
+var=`./../xhw1 -a -m 777 $i1 $i1`
+
+echo "Expected Output: Input and outputs are same"
+echo "Received Output: $var"
+
+echo "Has the user handled the test case correctly? Press y/n"
+read abc
+
+if [ "$abc" = "y" ]; then
+	echo "$(tput setaf 2)"
+	echo "***PASSED***"
+	echo "$(tput sgr0)"
+else
+	echo "$(tput setaf 1)"
+	echo "***FAILED***"
+	echo "$(tput sgr0)"
+fi
+
+
+echo "************Test Case 10.2: Checking for appropriate error message for same input and output file***********"
 
 var=`./../xhw1 -c -m 7 "$out/out19" $i1 $i2`
+var1=`ll "$out/out19"`
 
 echo "Expected Output: Same permission file as that of output file"
-echo "Received Output: $var"
+echo "Received Output: $var1"
 
 echo "Has the user handled the test case correctly? Press y/n"
 read abc
@@ -43,47 +64,6 @@ else
 fi
 
 
-echo "************Test Case 13.2: Giving invalid permission for outfile.***********"
-
-var=`./../xhw1 -c -m 111777 "$out/out20" $i1 $i2`
-
-echo "Expected Output: Some error message"
-echo "Received Output: $var"
-
-echo "Has the user handled the test case correctly? Press y/n"
-read abc
-
-if [ "$abc" = "y" ]; then
-	echo "$(tput setaf 2)"
-	echo "***PASSED***"
-	echo "$(tput sgr0)"
-else
-	echo "$(tput setaf 1)"
-	echo "***FAILED***"
-	echo "$(tput sgr0)"
-fi
-
-
-
-echo "************Test Case 13.3: Giving invalid permission for outfile.***********"
-
-var=`./../xhw1 -c -m 199 "$out/out20" $i1 $i2`
-
-echo "Expected Output: Some error message"
-echo "Received Output: $var"
-
-echo "Has the user handled the test case correctly? Press y/n"
-read abc
-
-if [ "$abc" = "y" ]; then
-	echo "$(tput setaf 2)"
-	echo "***PASSED***"
-	echo "$(tput sgr0)"
-else
-	echo "$(tput setaf 1)"
-	echo "***FAILED***"
-	echo "$(tput sgr0)"
-fi
 
 else
 	echo "Test case skipped"

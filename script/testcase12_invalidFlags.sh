@@ -11,9 +11,9 @@
 
 ###
 
-i1='script/input/input-1'
-i2='script/input/input-2'
-out='script/output'
+i1='input/input-1'
+i2='input/input-2'
+out='output'
 
 echo "DESCRIPTION: Testing for invalid flags. Press y to continue, n to skip this test case"
 
@@ -23,7 +23,7 @@ if [ "$abc" = "y" ]; then
 
 echo "************Test Case 12.1: Checking for appropriate error message on specifying some random flags***********"
 
-var=`./../xhw1 -a -x -y -N "$out/out9" $l1234 | grep -i "invalid\|error\|flags\|supported\|wrong\|please\|try"`
+var=`./../xhw1 -a -x -y -N "$out/out9" $i1`
 
 echo "Expected Output: Invalid arguments specified"
 echo "Received Output: $var"
@@ -42,10 +42,10 @@ else
 fi
 
 
-echo "************Test Case 12.2: Checking for appropriate error message on specifying -c and -e flags together***********"
+echo "************Test Case 12.2: Specify -N and -P and check for conflict message***********"
 
 # Create out15 before testing this.
-var=`./../xhw1 -c -e -N "$out/out15" $i1 $i2 | grep -i "invalid\|error\|flags\|supported\|wrong\|please\|try"`
+var=`./../xhw1 -c -N -P "$out/out15" $i1 $i2`
 
 echo "Expected Output: Suitable error message "
 echo "Received Output: $var"

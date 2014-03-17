@@ -31,11 +31,3 @@ WHAT IS LINUX?
  Also note that the GPL below is copyrighted by the Free Software
  Foundation, but the instance of code that it refers to (the Linux
  kernel) is copyrighted by me and others who actually wrote it.
-
-
-	List of maintainers and how to submit kernel changes
-
-Please try to follow the guidelines below.  This will make things
-easier on the maintainers.  Not all of these guidelines matter for every
-trivial patch so apply some common sense.
-LOGICAL DISK MANAGER SUPPORT (LDM, Windows 2000/XP/Vista Dynamic Disks)
