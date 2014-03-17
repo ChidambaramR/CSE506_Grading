@@ -12,24 +12,22 @@
 
 errno=10
 
-s1='script/input/werwe-1'
-s2='script/input/sdfsdf-2'
-s3='script/input/sdasdasdasdasdasdasxasxasxasxd-3'
-s4='script/input/i23-1'
-s5='script/input/inpu234234-2'
-s6='script/input/input234234-3'
-out='script/output/error'
+s1='input/small-1'
+s2='input/small-2'
+s3='input/small-3'
+s4='input/small-4'
+out='output/error'
 
-echo "DESCRIPTION: Testing if user is able to write eventhough he does not have permission. Press y to continue, n to skip this test case"
+echo "DESCRIPTION: Checking for memory leak. Press y to continue and n to stop"
 
 read abc
 
 if [ "$abc" = "y" ]; then
-echo "************Test Case 14.1: Input file does not exists***********"
+echo "************Test Case X: Input file does not exists***********"
 
-var=`./../xhw1 -a -c "$out/error15" $s1 $s2 $s3 $s4`
+var=`valgrind --tool=memcheck --leak-check=full -v ./../xhw1 -a -c "$out/error15" $s1 $s2 $s3 $s4`
 
-echo "Expected Output: Input file does not exists or something similar"
+echo "Expected Output: 0 output "
 echo "Received Output: $var"
 printf "Checking Output..."
 
