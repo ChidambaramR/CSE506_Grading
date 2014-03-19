@@ -10,7 +10,7 @@ s12='input/small-2'
 s13='input/small-3'
 
 
-out='output/error'
+out='/home/chid/output/error'
 
 echo "DESCRIPTION: Testing for appropriate error numbers. Press y to continue, n to skip this test case"
 

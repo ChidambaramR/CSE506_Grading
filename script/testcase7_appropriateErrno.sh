@@ -11,7 +11,7 @@ s12='input/small-2'
 s13='input/small-3'
 
 
-out='output/error'
+out='/home/chid/output/error'
 
 echo "DESCRIPTION: Testing for appropriate error numbers. Press y to continue, n to skip this test case"
 
@@ -26,8 +26,7 @@ if [ "$abc" = "y" ]; then
 #Output file does not have write permission
 echo "************Test Case 7.1: Output file does not have write permission (EACCES 13)***********"
 
-var1=`./../xhw1 -a "$out/error1" $s11 $s12 $s13`
-#var=`./../xhw1 -a -m 777 "$out/error1" $s1 $s2 $s3 | grep errno\|error\|fail\|failed\|errors\|please\|returned | egrep -o [0-9]{2}`
+var1=`./../xhw1 -a -m 444 "$out/error1" $s11 $s12 $s13`
 
 echo "Expected Output: EACCESS 13"
 echo "Received Output: $var1"

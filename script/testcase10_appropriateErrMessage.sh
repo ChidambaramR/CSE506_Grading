@@ -13,7 +13,8 @@
 
 i1='input/input-1'
 i2='input/input-2'
-out='output'
+
+out='/home/chid/output'
 
 echo "DESCRIPTION: Testing for Appropriate error messages. Press y to continue, n to skip this test case"
 
@@ -42,13 +43,13 @@ else
 fi
 
 
-echo "************Test Case 10.2: Checking for appropriate error message for same input and output file***********"
 
-var=`./../xhw1 -c -m 7 "$out/out19" $i1 $i2`
-var1=`ll "$out/out19"`
+echo "************Test Case 10.2: Giving the -h flag***********"
 
-echo "Expected Output: Same permission file as that of output file"
-echo "Received Output: $var1"
+var=`./../xhw1 -h`
+
+echo "Expected Output: Output file is created with permission 7"
+echo "Received Output: $var"
 
 echo "Has the user handled the test case correctly? Press y/n"
 read abc
@@ -62,8 +63,6 @@ else
 	echo "***FAILED***"
 	echo "$(tput sgr0)"
 fi
-
-
 
 else
 	echo "Test case skipped"

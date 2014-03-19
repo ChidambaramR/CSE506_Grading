@@ -18,7 +18,7 @@ s3='script/input/sdasdasdasdasdasdasxasxasxasxd-3'
 s4='script/input/i23-1'
 s5='script/input/inpu234234-2'
 s6='script/input/input234234-3'
-out='script/output/error'
+out='home/chid/output/error'
 
 echo "DESCRIPTION: Testing if user is able to write eventhough he does not have permission. Press y to continue, n to skip this test case"
 

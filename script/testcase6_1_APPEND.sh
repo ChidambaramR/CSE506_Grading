@@ -27,7 +27,9 @@ l4='input/large-4'
 l1234='input/large-1-2-3-4'
 
 llen=$(stat -c %s input/large-1-2-3-4)
-out='output'
+
+out='/home/chid/output'
+outpath='/home/chid/output'
 
 echo "DESCRIPTION: Testing for Small or Empty files. Press y to continue, n to skip this test case"
 read abc
@@ -44,7 +46,7 @@ echo "Expected Output: $slen"
 echo "Received Output: $var"
 printf "Checking Output..."
 
-cmp output/out1 input/dup-small-1-2-3-4 
+cmp $outpath/out1 input/dup-small-1-2-3-4 
 
 
 if [ $? -eq 0 ] && [ ${var:-0} -eq $slen ];  then
@@ -68,7 +70,7 @@ echo "Expected Output: $slen"
 echo "Received Output: $var"
 printf "Checking Output..."
 
-cmp output/out2 input/dup-small-1-2-3-4 
+cmp $outpath/out2 input/dup-small-1-2-3-4 
 
 
 if [ $? -eq 0 ] && [ ${var:-0} -eq $slen ];  then
@@ -93,7 +95,7 @@ echo "Expected Output: 0"
 echo "Received Output: $var"
 printf "Checking Output..."
 
-result=$(stat -c %s output/out3)
+result=$(stat -c %s $outpath/out3)
 
 if [ ${result:-0} -eq 0 ] && [ ${var:-0} -eq 0 ];
 	then
@@ -118,7 +120,7 @@ echo "Expected Output: 4"
 echo "Received Output: $var"
 printf "Checking Output..."
 
-cmp output/out4 input/dup-small-1-2-3-4 
+cmp $outpath/out4 input/dup-small-1-2-3-4 
 
 
 if [ $? -eq 0 ] && [ ${var:-0} -eq 4 ];  then
@@ -146,7 +148,7 @@ echo "Expected Output: 5"
 echo "Received Output: $var"
 printf "Checking Output..."
 
-cmp output/out5 input/dup-small-1-2-3-4 
+cmp $outpath/out5 input/dup-small-1-2-3-4 
 
 
 if [ $? -eq 0 ] && [ ${var:-0} -eq 5 ];  then
@@ -175,7 +177,7 @@ echo "Received Output: $var"
 printf "Checking Output..."
 
 
-result=$(stat -c %s output/out6)
+result=$(stat -c %s $outpath/out6)
 
 if [ ${result:-0} -eq 0 ] && [ ${var:-0} -eq 5 ];
 	then
@@ -200,7 +202,7 @@ echo "Expected Output: 100"
 echo "Received Output: $var"
 printf "Checking Output..."
 
-cmp output/out7 input/dup-small-1-2-3-4 
+cmp $outpath/out7 input/dup-small-1-2-3-4 
 
 
 if [ $? -eq 0 ] && [ ${var:-0} -eq 100 ];  then
@@ -228,7 +230,7 @@ echo "Expected Output: 100"
 echo "Received Output: $var"
 printf "Checking Output..."
 
-cmp output/out8 input/dup-small-1-2-3-4 
+cmp $outpath/out8 input/dup-small-1-2-3-4 
 
 
 if [ $? -eq 0 ] && [ ${var:-0} -eq 100 ];  then
@@ -248,17 +250,17 @@ fi
 echo "************Test Case 6.1.9: Empty Files(Percentage)**********"
 
  
-var=`$cmd -a -m 777 -P "$out/out9" $empty $empty $empty $empty $empty |  egrep -o [0-9]{3}`
+var=`$cmd -a -m 777 -P "$out/out9" $empty $empty $empty $empty $empty`
  
 
 echo "Expected Output: 100"
 echo "Received Output: $var"
 printf "Checking Output..."
 
-result=$(stat -c %s output/out9)
+result=$(stat -c %s $outpath/out9)
 
 
-if [ ${result:-0} -eq 0 ] && [ ${var:-0} -eq 100 ];
+if [ ${result:-0} -eq 0 ];
 	then
 		echo "$(tput setaf 2)"
 		echo "***PASSED***"
@@ -280,7 +282,7 @@ echo "Expected Output: $llen"
 echo "Received Output: $var"
 printf "Checking Output..."
 
-cmp output/out10 input/dup-large-1-2-3-4 
+cmp $outpath/out10 input/dup-large-1-2-3-4 
 
 
 if [ $? -eq 0 ] && [ ${var:-0} -eq $llen ];  then
@@ -307,7 +309,7 @@ echo "Expected Output: $llen"
 echo "Received Output: $var"
 printf "Checking Output..."
 
-cmp output/out11 input/dup-large-1-2-3-4 
+cmp $outpath/out11 input/dup-large-1-2-3-4 
 
 
 if [ $? -eq 0 ] && [ ${var:-0} -eq $llen ];  then
@@ -333,7 +335,7 @@ echo "Expected Output: 4"
 echo "Received Output: $var"
 printf "Checking Output..."
 
-cmp output/out12 input/dup-large-1-2-3-4 
+cmp $outpath/out12 input/dup-large-1-2-3-4 
 
 
 if [ $? -eq 0 ] && [ ${var:-0} -eq 4 ];  then
@@ -358,7 +360,7 @@ echo "Expected Output: 5"
 echo "Received Output: $var"
 printf "Checking Output..."
 
-cmp output/out13 input/dup-large-1-2-3-4 
+cmp $outpath/out13 input/dup-large-1-2-3-4 
 
 
 if [ $? -eq 0 ] && [ ${var:-0} -eq 5 ];  then
@@ -384,7 +386,7 @@ echo "Expected Output: 100"
 echo "Received Output: $var"
 printf "Checking Output..."
 
-cmp output/out14 input/dup-large-1-2-3-4 
+cmp $outpath/out14 input/dup-large-1-2-3-4 
 
 
 if [ $? -eq 0 ] && [ ${var:-0} -eq 100 ];  then
@@ -410,7 +412,7 @@ echo "Expected Output: 100"
 echo "Received Output: $var"
 printf "Checking Output..."
 
-cmp output/out15 input/dup-large-1-2-3-4 
+cmp $outpath/out15 input/dup-large-1-2-3-4 
 
 
 if [ $? -eq 0 ] && [ ${var:-0} -eq 100 ];  then
