@@ -90,8 +90,28 @@
 	echo "$(tput setaf 3)"
 	echo "===== TEST CASE 13 ====="
 	echo "$(tput sgr0)"
+	sh testcase13_OutfilePerm.sh 2>&1 | tee /home/chid/$name/testcase13.txt
+	printf "\n"
+
+	echo "$(tput setaf 3)"
+	echo "===== TEST CASE 14 ====="
+	echo "$(tput sgr0)"
+	sh testcase14_FileNoExist.sh 2>&1 | tee /home/chid/$name/testcase14.txt
+	printf "\n"
+
+	echo "$(tput setaf 3)"
+	echo "===== TEST CASE 15 ====="
+	echo "$(tput sgr0)"
+	sh testcase15_inputNoRead.sh 2>&1 | tee /home/chid/$name/testcase15.txt
+	printf "\n"
+
+	echo "$(tput setaf 3)"
+	echo "===== TEST CASE 16 ====="
+	echo "$(tput sgr0)"
 	sh testcaseMemLeak.sh 2>&1 | tee /home/chid/$name/testcaseMemLeak.txt
 	printf "\n"
+
+
 
 	rm -f /home/chid/output/out*
 	rm -f /home/chid/error/error3

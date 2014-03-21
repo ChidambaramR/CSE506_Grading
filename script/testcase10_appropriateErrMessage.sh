@@ -11,8 +11,7 @@
 
 ###
 
-i1='input/input-1'
-i2='input/input-2'
+i1='input/sample'
 
 out='/home/chid/output'
 
